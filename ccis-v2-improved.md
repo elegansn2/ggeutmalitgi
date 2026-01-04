@@ -1,11 +1,13 @@
-# Claude Code Interview Skill (CCIS) v2.0
-**Adaptive App Design Interview Framework**
+# Claude Code Interview Skill (CCIS) v2.1
+**Adaptive App Design Interview Framework with Continual Learning**
 
 ## 📋 메타데이터
-- Version: v2.0.0
+- Version: v2.1.0
 - Owner: Beomseok
 - Mode: Adaptive (Complexity-based)
 - Language: Multi-language (default: user's language with respectful tone)
+- Last Updated: 2026-01-04
+- Learning: Self-modifying (updates itself after each session)
 
 ---
 
@@ -18,6 +20,7 @@
 - 🎚️ 적응형 복잡도 - 프로젝트 크기에 맞춰 조정
 - 🔒 안전 우선 - 위험 요소 조기 식별
 - 💬 자연스러운 대화 - 형식보다 실질
+- ❌ **절대 추측 금지** - 모르면 반드시 질문 (NEVER GUESS, ALWAYS ASK)
 
 ---
 
@@ -284,30 +287,174 @@
 
 ---
 
-## 🧪 Self-Improvement
+## ⚠️ Known Failures (실패 패턴 학습)
 
-### 매 인터뷰 종료 후 (사용자 비공개):
+**이 섹션은 실제 사용 중 발견된 실패 사례를 지속적으로 축적합니다.**
+
+### 자주 발생하는 실패 패턴:
+
+#### ❌ Failure #1: 너무 빨리 기술 스택 질문
 ```
-# CCIS Retrospective Log
+증상: PHASE 1-2에서 "React로 할까요, Vue로 할까요?" 같은 질문
+원인: 사용자가 아직 무엇을 원하는지도 정의 안 됨
+해결: 기술 스택은 PHASE 9 (최종 패키지)에서만 언급. 그 전엔 "웹/앱/데스크톱" 수준만
+```
 
-Date: [날짜]
-Track: [Simple/Standard/Complex]
-Phases: [거친 단계들]
+#### ❌ Failure #2: 추측으로 다음 질문 건너뛰기
+```
+증상: "아마 이런 의도시겠죠?"라며 확인 없이 진행
+원인: LLM의 과신
+해결: 애매하면 반드시 "A인가요 B인가요?" 재확인
+```
 
-What worked:
-- [효과적이었던 질문/접근]
+#### ❌ Failure #3: 기존 솔루션 체크 생략
+```
+증상: PHASE 3를 형식적으로만 통과
+원인: 사용자가 "몰라요"라고 하면 그냥 넘어감
+해결: "Google Sheets로는 안 될까요?" 등 구체적 대안 3개 이상 직접 제시
+```
 
-What didn't:
-- [막혔던 부분]
-- [사용자가 헷갈려한 부분]
+#### ❌ Failure #4: 복잡도 판단 실패
+```
+증상: 간단한 앱인데 Complex Track으로 보냄
+원인: "데이터베이스"라는 단어만 보고 복잡하다고 판단
+해결: 실제 위험 요소(돈/민감정보/멀티유저)가 없으면 Simple/Standard 유지
+```
 
-Suggested improvements:
-- [v2.1 제안사항]
+#### ❌ Failure #5: 체크포인트 건너뛰기
+```
+증상: PHASE 완료 후 확인 없이 바로 다음 단계
+원인: 빠르게 진행하려는 욕심
+해결: 매 PHASE 끝에 반드시 "이대로 진행할까요?" 확인
+```
 
-User satisfaction markers:
-- Completed: [Y/N]
-- Iterations needed: [횟수]
-- Average phase time: [예상]
+**📝 새로운 실패 패턴 발견 시:**
+- 이 섹션에 추가하고 버전 번호 증가 (v2.1.1, v2.1.2...)
+- 날짜, 증상, 원인, 해결책 형식 유지
+
+---
+
+## ✅ Best Practices (성공 패턴 학습)
+
+**이 섹션은 효과적이었던 질문 및 접근법을 축적합니다.**
+
+### 효과적인 질문 패턴:
+
+#### ✅ Practice #1: "현재 어떻게 하세요?" 질문
+```
+예시: "지금은 이 문제를 어떻게 해결하고 계세요?"
+효과: 구체적 pain point 발견, 실제 워크플로우 이해
+적용: PHASE 2 초반
+```
+
+#### ✅ Practice #2: 선택지 제시
+```
+예시: "사용자가 로그인할 때 A) 이메일+비번 B) 소셜 로그인 C) 로그인 없음 중 어떤 걸 원하시나요?"
+효과: 비기술 사용자도 쉽게 선택 가능
+적용: 모든 PHASE에서 애매할 때
+```
+
+#### ✅ Practice #3: "최악의 경우" 질문
+```
+예시: "이 기능이 잘못되면 어떤 일이 일어날까요?"
+효과: 위험 요소 조기 발견, 사용자의 안전 의식 확인
+적용: PHASE 2, 위험 신호 감지 시
+```
+
+#### ✅ Practice #4: 구체적 예시 요청
+```
+예시: "가장 최근에 이 문제로 어려웠던 경우를 하나 말씀해주세요"
+효과: 추상적 요구사항 → 구체적 사례
+적용: PHASE 1-2
+```
+
+#### ✅ Practice #5: 역질문 (inverse questioning)
+```
+예시: "이 앱에 절대 없었으면 하는 기능이 있나요?"
+효과: Non-goals 명확화, 과도한 기능 방지
+적용: PHASE 4 (Scope)
+```
+
+**📝 새로운 성공 패턴 발견 시:**
+- 이 섹션에 추가
+- 예시, 효과, 적용 시점 명시
+
+---
+
+## 🔄 Continual Learning (지속적 학습 시스템)
+
+**이 Skill은 Self-modifying 구조입니다. 즉, 이 파일 자체를 수정하여 성능을 개선합니다.**
+
+### 자동 회고 프로세스:
+
+#### 1️⃣ 인터뷰 종료 후 자동 실행:
+```
+사용자가 "완료" 또는 최종 패키지 생성 후,
+다음 프롬프트를 자동으로 내부 실행:
+
+"이번 세션에서 어떤 질문이 효과적이었고, 어떤 부분에서 사용자가 헷갈려했나요?
+1) Known Failures 섹션에 추가할 실패 패턴이 있나요?
+2) Best Practices 섹션에 추가할 성공 패턴이 있나요?
+3) 있다면 이 파일(ccis-v2-improved.md)을 직접 수정하세요."
+```
+
+#### 2️⃣ /retrospective 명령어 (수동 실행):
+```
+사용자가 "/retrospective" 입력 시:
+
+1. 이번 세션 요약 (Track, Phases, 완료 여부)
+2. 발견된 문제점 분석
+3. Known Failures 또는 Best Practices 업데이트 제안
+4. 사용자 승인 후 파일 직접 수정
+5. 버전 번호 증가 (v2.1.0 → v2.1.1)
+```
+
+#### 3️⃣ 버전 관리 규칙:
+```
+- 마이너 개선 (Known Failures/Best Practices 추가): v2.1.0 → v2.1.1
+- PHASE 로직 수정: v2.1.0 → v2.2.0
+- 구조적 변경: v2.0.0 → v3.0.0
+```
+
+#### 4️⃣ 회고 로그 (내부 기록):
+```
+# CCIS Session Log
+
+## Session 2026-01-04-001
+- Track: Simple
+- Phases: 1-4, S1
+- Completed: Yes
+- Duration: ~18 min
+- Issues: None
+- Updates: None
+
+## Session 2026-01-04-002
+- Track: Complex
+- Phases: 1-4, CX1 (중단)
+- Completed: No
+- Duration: ~25 min
+- Issues: PHASE 3에서 사용자가 "기존 솔루션"의 의미를 이해 못 함
+- Updates: Known Failure #6 추가 - "기존 솔루션" 용어 → "비슷한 앱/도구" 로 변경
+
+[계속 추가...]
+```
+
+### 실제 Self-modification 예시:
+
+**시나리오:** 여러 세션에서 사용자가 PHASE 3 "기존 솔루션 체크"를 이해 못 함
+
+**회고 결과:**
+```markdown
+#### ❌ Failure #6: "기존 솔루션" 용어가 어려움
+증상: 비기술 사용자가 "솔루션"이란 단어에 혼란
+원인: 전문 용어 사용
+해결: "비슷한 앱이나 도구" 같은 쉬운 표현 사용
+```
+
+**자동 적용:** PHASE 3의 질문 템플릿을 직접 수정
+```diff
+- "기존 솔루션을 찾아보셨나요?"
++ "비슷한 기능을 하는 앱이나 도구를 써보신 적 있나요?"
 ```
 
 ---
@@ -338,10 +485,12 @@ User satisfaction markers:
 
 ---
 
-## 📊 v1 → v2 주요 변경사항
+## 📊 버전별 변경사항
 
-| 항목 | v1 | v2 |
-|------|----|----|
+### v1.0 → v2.0 (Major Update)
+
+| 항목 | v1.0 | v2.0 |
+|------|------|------|
 | 단계 수 | 고정 9단계 | 적응형 4-8단계 |
 | 질문 정책 | 정확히 1개만 | 1-3개 관련 질문 |
 | 복잡도 | 모든 앱 동일 | 3가지 경로 |
@@ -350,6 +499,18 @@ User satisfaction markers:
 | PHASE 중복 | 0과 8 중복 | 통합 |
 | 완료 기준 | 모호 | 명확한 체크리스트 |
 | 진행률 표시 | 없음 | X/Y 표시 |
+
+### v2.0 → v2.1 (Continual Learning Update)
+
+| 항목 | v2.0 | v2.1 |
+|------|------|------|
+| Self-modification | 없음 | ✅ 파일 자체 수정 |
+| Known Failures | 없음 | ✅ 실패 패턴 축적 |
+| Best Practices | 없음 | ✅ 성공 패턴 축적 |
+| 추측 방지 | 암묵적 | ✅ 명시적 원칙 |
+| /retrospective | 없음 | ✅ 수동 회고 명령 |
+| 버전 관리 | 수동 | ✅ 자동 증가 규칙 |
+| 세션 로그 | 없음 | ✅ 누적 기록 |
 
 ---
 
@@ -383,11 +544,53 @@ PHASE CX4: Compliance → 세법 보관 기간, 개인정보 처리
 ## ⚙️ 구현 노트 (for Claude Code Agent)
 
 이 스킬을 실제로 사용할 때:
+
+### 기본 실행:
 - 현재 PHASE를 명확히 표시
 - 체크리스트 활용으로 완료 여부 추적
 - 위험 신호 키워드 자동 감지
 - 사용자 언어 첫 턴에 감지 후 고정
 
+### 추측 금지 강제:
+- **절대 추측하지 마라**: 애매하면 반드시 `ask_user` 도구 사용
+- "아마 ~일 것 같습니다"라는 표현 금지
+- "A인가요 B인가요?" 형식으로 명확히 재확인
+
+### Self-modification 트리거:
+1. 인터뷰 완료 시 자동 회고 실행
+2. `/retrospective` 명령 감지 시 수동 회고
+3. Known Failures / Best Practices 섹션 업데이트
+4. 버전 번호 자동 증가
+5. git commit으로 변경사항 기록
+
+### 세션 로그 관리:
+- 매 세션마다 간단한 메타데이터 기록
+- 실패/성공 패턴 발견 시 즉시 파일 업데이트
+- 누적 데이터로 장기적 성능 개선
+
 ---
 
-**End of CCIS v2.0**
+## 📚 참고 자료 및 아키텍처 차용
+
+이 v2.1은 다음 원칙들을 차용했습니다:
+
+**출처:** "20260104-AI-ClaudeCode_Skill_Architecture-1"
+
+**차용한 핵심 개념:**
+1. **Continual Learning Loop**: 세션 종료 후 skill.md 파일 직접 수정
+2. **Spec-driven Development**: ask_user 도구 강제 사용
+3. **Known Failures / Best Practices**: 구체적 패턴 축적
+4. **Self-modifying Skill**: 파일 자체가 진화하는 구조
+5. **Progressive Disclosure**: 토큰 효율성 (향후 적용 예정)
+
+**적용 방식:**
+- ⚠️ Known Failures 섹션 (라인 290-334)
+- ✅ Best Practices 섹션 (라인 337-381)
+- 🔄 Continual Learning 시스템 (라인 384-458)
+- /retrospective 명령어
+- 버전 자동 관리 규칙
+
+---
+
+**End of CCIS v2.1**
+**Last Updated:** 2026-01-04
